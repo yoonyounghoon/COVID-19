@@ -4,8 +4,8 @@ import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "./HomeScreen";
-import HospitalScreen from "./Hospital/Hospital";
-import PharmacyScreen from "./Pharmacy/PharmacyScreen";
+import HospitalScreen from "./src/Hospital/HospitalScreen";
+import PharmacyScreen from "./src/Pharmacy/PharmacyScreen";
 import { FontAwesome5 } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
