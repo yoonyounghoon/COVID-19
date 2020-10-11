@@ -23,10 +23,19 @@ const Map = ({ xPos, yPos, data }) => {
             latitude: xPos,
             longitude: yPos,
           }}
-          title="현재 위치입니다."
-          description="현재위치"
-          onPress={() => Alert.alert("ㅎㅇ")}
+          title="현재위치입니다."
+          description="병원위치"
         />
+        {data.map((data) => (
+          <Marker
+            coordinate={{
+              latitude: data.ypos,
+              longitude: data.xpos,
+            }}
+            title={data.name}
+            description="병원위치"
+          />
+        ))}
       </MapView>
     </View>
   );
