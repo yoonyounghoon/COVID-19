@@ -1,51 +1,47 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import PharmacyInfo from "./PharmacyInfo";
 import * as Location from "expo-location";
+import Map from "../Hospital/Map";
+import Axios from "axios";
+import Head from "../components/Head";
+import PharmacyItem from "./PharmacyItem";
 
-// 여기서 현재위치를 받아서
-const PharmacyScreen = () => {
+export default function Pharmacy() {
   const [lat, setLat] = useState(0);
   const [lon, setLon] = useState(0);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
     const getLocation = async () => {
       try {
         await Location.requestPermissionsAsync();
-
         const location = await Location.getCurrentPositionAsync();
 
         setLat(location.coords.latitude);
         setLon(location.coords.longitude);
-        console.log("----PHARMACYSCREEN");
-        console.log(lat);
-        console.log(lon);
+
+        const response = await Axios.get(
+          `http://192.168.0.10:8080/medicalHelper/pharmacy/gps/${lon}/${lat}?pageNo=${1}`
+        );
+        setData(response.data);
       } catch (e) {
         console.log(e);
       }
     };
     getLocation();
   }, []);
-
   return (
     <View style={styles.container}>
-      <PharmacyInfo styles={styles.info} lat={lat} lon={lon} />
+      <Head />
+      <Map style={styles.map} xPos={lat} yPos={lon} data={data} />
+      <View style={styles.list}></View>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
-  map: {
-    flex: 1,
-  },
-  info: {
-    flex: 1,
-    backgroundColor: "yellow",
-  },
+  list: { flex: 1, backgroundColor: "yellow" },
 });
-export default PharmacyScreen;

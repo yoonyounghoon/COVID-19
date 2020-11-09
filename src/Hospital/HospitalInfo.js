@@ -11,17 +11,12 @@ const HospitalInfo = ({ lat, lon }) => {
     const get = async () => {
       try {
         const response = await Axios.get(
-          // `http://192.168.0.10:8080/medicalHelper/emergency/emergentList/${text}/${1}`
           `http://192.168.0.10:8080/medicalHelper/pharmacy/gps/${yPos}/${xPos}?pageNo=${1}`
         );
 
         console.log("HOSPITALINFO");
         setData(response.data);
-        console.log(lat);
-        console.log(lon);
       } catch (e) {
-        console.log(xPos);
-        console.log(yPos);
         console.log(e);
         console.log("병원데이터 못가져옴!");
       }
