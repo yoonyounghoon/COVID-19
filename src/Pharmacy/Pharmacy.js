@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import Map from "./Map";
+import React, { useEffect, useState } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
 import * as Location from "expo-location";
-import HospitalInfo from "./HospitalInfo";
-import PharmacyInfo from "../Pharmacy/PharmacyInfo";
+import Head from "../components/Head";
+import PharmacyList from "./PharmacyList";
+import PharmacyMap from "./PharmacyMap";
 
-const HospitalScreen = () => {
+export default function Pharmacy() {
   const [lat, setLat] = useState(0);
   const [lon, setLon] = useState(0);
 
@@ -26,16 +26,23 @@ const HospitalScreen = () => {
 
   return (
     <View style={styles.container}>
-      <HospitalInfo styles={styles.info} lat={lat} lon={lon} />
+      <Head />
+
+      <PharmacyMap style={styles.map} xPos={lat} yPos={lon} />
+      <ScrollView style={styles.list}>
+        <PharmacyList xPos={lat} yPos={lon} />
+      </ScrollView>
     </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: "black",
   },
+  map: {
+    flex: 4,
+  },
+  list: { flex: 1, backgroundColor: "#b2d8d8" },
 });
-export default HospitalScreen;

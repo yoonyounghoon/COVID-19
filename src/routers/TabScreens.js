@@ -1,12 +1,11 @@
 import React from "react";
-import { View, Text } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Appointment from "../pages/Appointment";
-import Confirm from "../pages/Confirm";
-import Hospital from "../pages/Hospital";
-import Pharmacy from "../pages/Pharmacy";
 import Mypage from "../pages/Mypage";
 import { FontAwesome5 } from "@expo/vector-icons";
+import PharmacyScreen from "../pages/PharmacyScreen";
+import MedicalCheckScreen from "../pages/MedicalCheckScreen";
+import ConfirmScreen from "../pages/ConfirmScreen";
+import CoronaScreen from "../pages/CoronaScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,7 +20,7 @@ export default function TabScreens() {
             iconName = focused ? "check" : "list";
           } else if (route.name === "Confirm") {
             iconName = focused ? "check" : "calendar-check";
-          } else if (route.name === "Hospital") {
+          } else if (route.name === "EmergencyRoom") {
             iconName = focused ? "check" : "map-marker-alt";
           } else if (route.name === "Pharmacy") {
             iconName = focused ? "check" : "medkit";
@@ -37,10 +36,10 @@ export default function TabScreens() {
         inactiveTintColor: "gray",
       }}
     >
-      <Tab.Screen name="Appointment" component={Appointment} />
-      <Tab.Screen name="Confirm" component={Confirm} />
-      <Tab.Screen name="Hospital" component={Hospital} />
-      <Tab.Screen name="Pharmacy" component={Pharmacy} />
+      <Tab.Screen name="Appointment" component={MedicalCheckScreen} />
+      <Tab.Screen name="Confirm" component={ConfirmScreen} />
+      <Tab.Screen name="EmergencyRoom" component={CoronaScreen} />
+      <Tab.Screen name="Pharmacy" component={PharmacyScreen} />
       <Tab.Screen name="Mypage" component={Mypage} />
     </Tab.Navigator>
   );
