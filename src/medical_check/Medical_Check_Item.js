@@ -87,9 +87,8 @@ export default function Medical_Check_Item({ data }) {
                     latitude: data.cyVl,
                     longitude: data.cxVl,
                   }}
-                  title="현재위치입니다."
+                  title="병원위치입니다."
                   pinColor="red"
-                  description="병원위치"
                 />
               </MapView>
               <Text style={{ fontSize: 16 }}>
